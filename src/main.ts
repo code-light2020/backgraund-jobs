@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import express, { Request, Response } from 'express';
-import MAilService from './app/service/MailService';
+import JobsService from './app/service/JobsService';
 
 const app = express();
 app.use(express.json());
@@ -11,7 +11,13 @@ app.get('/', (re: Request, res: Response) =>
 
 app.post('/register', async (req: Request, res: Response) => {
   const { name, password, email } = req.body;
-  MAilService.send({ name, email, password });
+  const user = {
+    name,
+    password,
+    email,
+  };
+  JobsService.add('RegisterEmail', user);
+
   return res.status(200).json({ message: 'User created' });
 });
 

@@ -6,5 +6,6 @@ declare namespace NodeJS {
     NODEMAILER_PASS: string;
 
     REDIS_PORT: number;
+    REDIS_HOST: string;
   }
 }
